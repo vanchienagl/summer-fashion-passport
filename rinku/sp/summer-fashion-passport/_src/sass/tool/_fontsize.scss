@@ -1,0 +1,19 @@
+/* fontsize
+--------------------------------------------------------------------- */
+@function get_pcvw($size, $viewport:1440) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+@function get_vw($size, $viewport:640) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+@mixin fs($fontsize) {
+  font-size: ($fontsize / 10) + rem;
+  @include pcmiddle() {
+  	font-size: get_pcvw($fontsize);	
+  }
+}
+@mixin fsvw($fontsize:10){
+  font-size: get_vw($fontsize);
+}

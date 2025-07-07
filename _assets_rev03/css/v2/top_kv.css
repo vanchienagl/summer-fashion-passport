@@ -1,0 +1,97 @@
+
+/* --------------
+グランドトップ：キービジュアル用CSS
+(Sass不要)
+ *--------------/
+
+
+
+/* 
+ALWAYS WORTH THE TRIP国内外の人気ブランドが毎日お得なプライスでプレミアム･アウトレット
+ */
+.top .kv-flat .kv_20210219_main_text {
+	width: 65.75%;
+	max-width: 526px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 640px) {
+	.top .kv-flat .kv_20210219_main_text {
+		top:calc(50% - 45px);
+	}
+}
+
+/* 
+プレミアム・アウトレットの魅力をご紹介
+ */
+.top .kv-flat .kv_20210219_charm_text {
+	width: 84%;
+	max-width: 672px;
+	top: 13.6%;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+/* 
+PREMIUM OUTLETS®ショッピングをもっと楽しく、もっと便利に！カード・ポイントなど各種サービスのご案内
+ */
+
+.top .kv-flat .kv_20210219_fun_text{
+	width:88.75%;
+	max-width: 710px;
+	top: 11.47%;
+	left: 50%;
+	transform: translate(-50%,0);
+}
+
+/* 
+PREMIUM OUTLETS® TIMES(2021/4/12 0時～公開用)
+ */
+.top .kv-flat .kv_20210219_times_text{
+	width: 100%;
+	max-width:100%;
+	position:absolute;
+	top:50%;
+	left:50%;
+	bottom: auto;
+	transform: translate(-50%, -50%);
+}
+
+/* 
+PREMIUM OUTLETS® TIMES(2021/4/23 11時～公開用)
+追記:2021/04/15
+ */
+.top .kv-flat .kv_POtimes_text {
+	width: 100%;
+	max-width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	bottom: auto;
+	transform: translate(-50%, -50%);
+}
+
+/* 
+TimesCar(2021/7/8 10時～公開用)
+ */
+.top .kv-flat .kv_20210708_car_text {
+	width: 100%;
+	max-width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	bottom: auto;
+	transform: translate(-50%, -50%);
+}
+
+.top .kv-flat .kv-text-img__center {
+	width: 100%;
+	max-width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	bottom: auto;
+	transform: translate(-50%, -50%);
+}

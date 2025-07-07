@@ -1,0 +1,34 @@
+{
+  "name": "htdocs",
+  "version": "0.0.0",
+  "description": "Gulp",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^9.5.1",
+    "browser-sync": "~2.9.11",
+    "gsap": "^2.1.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-ejs": "^3.0.1",
+    "gulp-imagemin": "~2.0.0",
+    "gulp-load-plugins": "~0.8.0",
+    "gulp-loader": "^1.1.2",
+    "gulp-plumber": "~0.6.6",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-wait": "0.0.2",
+    "gulp-watch": "^4.3.5",
+    "gulp.spritesmith": "~4.1.1",
+    "run-sequence": "~1.0.2"
+  },
+  "volta": {
+    "node": "11.3.0"
+  }
+}

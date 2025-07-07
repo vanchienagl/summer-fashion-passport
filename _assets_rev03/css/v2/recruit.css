@@ -1,0 +1,403 @@
+p, ul, ol, dl {
+    margin-bottom: 0.7em;
+}
+.recruit-nav.is-main {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.recruit-nav {
+    text-align: center;
+}
+
+
+@media (min-width: 641px){
+  h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {
+      font-weight: bold;
+  }
+  h3.recruit-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.3;
+      margin-bottom: 0.7em;
+  }
+  h4 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.4;
+      margin-bottom: 0.3em;
+  }
+  h5, h6 {
+      letter-spacing: -0.04em;
+      font-size: 12px;
+      font-size: 1.2rem;
+      margin-bottom: 0.3em;
+      line-height: 1.4;
+  }
+  .u-align--center {
+      text-align: center !important;
+  }
+  .u-fs12 {
+      font-size: 12px;
+      font-size: 1.2rem;
+  }
+  .u-mb20 {
+      margin-bottom: 20px !important;
+  }
+  .text-att {
+      font-size: 11px;
+      font-size: 1.1rem;
+  }
+  .list--indent {
+      padding-left: 1em;
+      text-indent: -1em;
+  }
+  .recruit-nav {
+      text-align: center;
+  }
+  .recruit-nav.is-sub {
+      margin-top: 35px;
+  }
+  .title-solid-color {
+      display: table;
+      width: 100%;
+      background-color: #f2f2f2;
+      color: #000000;
+      margin-bottom: 15px;
+      min-height: 52px;
+      padding: 20px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  .title-solid-color__inner {
+      display: table-cell;
+      vertical-align: middle;
+  }
+  .title-solid-color img {
+      vertical-align: middle;
+  }
+  .recruit-merit {
+      margin: 0 0 12px;
+      display: table;
+  }
+  .recruit-merit__col {
+    float: left;
+    width: 301px;
+    margin-right: 33px;
+  }
+  .recruit-merit-item__photo {
+    width: 301px;
+    height: 172px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .recruit-merit-item__photo img {
+      width: 100%;
+  }
+
+  .recruit-merit__col:last-child {
+      margin-right: 0;
+  }
+  .recruit-merit-item__title {
+      font-size: 2rem;
+      font-weight: 700;
+      padding-top: 0.1em;
+      padding-left: 35px;
+      padding-bottom: 0.5em;
+      line-height: 1.3;
+  }
+  .recruit-merit-item__title.is-list1 {
+      background: transparent url(/_assets/images/common/recruit/marker_list1.png) 0 0 no-repeat;
+  }
+  .recruit-merit-item__title.is-list2 {
+      background: transparent url(/_assets/images/common/recruit/marker_list2.png) 0 0 no-repeat;
+  }
+  .recruit-merit-item__title.is-list3 {
+      background: transparent url(/_assets/images/common/recruit/marker_list3.png) 0 0 no-repeat;
+  }
+  .recruit-merit-item__title.is-list4 {
+      background: transparent url(/_assets/images/common/recruit/marker_list4.png) 0 0 no-repeat;
+  }
+  .recruit-merit-item__title.is-list5 {
+      background: transparent url(/_assets/images/common/recruit/marker_list5.png) 0 0 no-repeat;
+  }
+  .recruit-interview {
+      margin-bottom: 30px;
+  }
+  .recruit-interview__col {
+      float: left;
+      width: 510px;
+  }
+  .recruit-interview__col:last-child {
+      float: right;
+  }
+  .recruit-interview-item__head {
+      display: table;
+      width: 100%;
+      padding-bottom: 5px;
+  }
+  .recruit-interview-item-shop {
+      display: table;
+      vertical-align: top;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  .recruit-interview-item-shop__ci {
+      display: inline-block;
+  }
+  .recruit-interview-item-shop__ci {
+      vertical-align: top;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  .recruit-interview-item-shop__ci img {
+      float: left;
+  }
+  .recruit-interview-item-shop__photo {
+      float: right;
+      padding: 0 0 10px 10px;
+      display: table-cell;
+  }
+  .recruit-interview-item-shop__msg {
+      margin-top: 10px;
+  }
+  .recruit-interview-schedule__left {
+      float: left;
+      width: 220px;
+      overflow: hidden;
+  }
+  .recruit-interview-schedule__left img {
+      width: 100%;
+  }
+  .recruit-interview-schedule__right {
+      float: right;
+      width: 223px;
+      overflow: hidden;
+  }
+  .recruit-interview-schedule__right img {
+      width: 100%;
+  }
+  .recruit-gallery {
+      width: 972px;
+      margin: 0 auto;
+      left: -1px;
+  }
+  .recruit-gallery__col {
+      float: left;
+      width: 321px;
+      height: 212px;
+      margin-left: 1px;
+      margin-right: 2px;
+      margin-bottom: 3px;
+      overflow: hidden;
+  }
+  .recruit-gallery span {
+      display: block;
+  }
+  .recruit-gallery img {
+      width: 100%;
+  }
+  .recruit-merit:after, .recruit-interview:after, .recruit-interview-item-info:after, .recruit-interview-schedule:after, .recruit-gallery:after {
+      content: ".";
+      display: block;
+      visibility: hidden;
+      height: 0;
+      font-size: 0;
+      line-height: 0;
+      clear: both;
+  }
+
+}
+
+@media (max-width: 640px){
+
+  h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {
+      font-weight: bold;
+  }
+  h3.recruit-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.3;
+      margin-bottom: 0.7em;
+  }
+  h4 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.4;
+      margin-bottom: 0.3em;
+  }
+   h5, h6 {
+      letter-spacing: -0.04em;
+      font-size: 12px;
+      font-size: 1.2rem;
+      margin-bottom: 0.3em;
+      line-height: 1.4;
+  }
+  .u-align--center {
+      text-align: center !important;
+  }
+  .u-fs12 {
+      font-size: 12px;
+      font-size: 1.2rem;
+  }
+  .u-mb20 {
+      margin-bottom: 20px !important;
+  }
+  .text-att {
+      font-size: 11px;
+      font-size: 1.1rem;
+  }
+  .list--indent {
+      padding-left: 1em;
+      text-indent: -1em;
+  }
+  .recruit-nav.is-sub {
+      margin-top: 35px;
+  }
+  .recruit-nav {
+      text-align: center;
+  }
+
+  .title-solid-color {
+      display: table;
+      width: 100%;
+      background-color: #f2f2f2;
+      color: #000000;
+      margin-bottom: 15px;
+      min-height: 52px;
+      padding: 20px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  .title-solid-color__inner {
+      display: table-cell;
+      vertical-align: middle;
+  }
+  .mod-recruit-section, .recruit-interview__col {
+    border-bottom: 1px solid #cecece;
+  }
+  .mod-recruit-section, .recruit-merit__col, .recruit-interview__col {
+    margin-bottom: 4.6875%;
+    padding: 0 4.6875% 3.90625%;
+  }
+  .mod-recruit-section:last-child, .recruit-interview__col:last-child {
+    border-bottom: none;
+  }
+  .recruit-merit-item__title {
+      font-size: 2rem;
+      font-weight: 700;
+      padding-top: 0.1em;
+      padding-left: 35px;
+      padding-bottom: 0.5em;
+      line-height: 1.3;
+  }
+  .recruit-merit-item__title.is-list1 {
+      background: transparent url(/_assets/images/common/recruit/marker_list1.png) 0 0 no-repeat;
+  }
+  .recruit-merit-item__title.is-list2 {
+      background: transparent url(/_assets/images/common/recruit/marker_list2.png) 0 0 no-repeat;
+  }
+  .recruit-merit-item__title.is-list3 {
+      background: transparent url(/_assets/images/common/recruit/marker_list3.png) 0 0 no-repeat;
+  }
+  .recruit-merit-item__title.is-list4 {
+      background: transparent url(/_assets/images/common/recruit/marker_list4.png) 0 0 no-repeat;
+  }
+  .recruit-merit-item__title.is-list5 {
+      background: transparent url(/_assets/images/common/recruit/marker_list5.png) 0 0 no-repeat;
+  }
+  .recruit-merit-item__photo {
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .recruit-merit-item__photo img {
+      width: 100%;
+  }
+  .recruit-merit__col:last-child {
+      margin-right: 0;
+      border-bottom:none;
+  }
+  .recruit-merit:after, .recruit-interview:after, .recruit-interview-item-info:after, .recruit-interview-schedule:after, .recruit-gallery:after {
+      content: ".";
+      display: block;
+      visibility: hidden;
+      height: 0;
+      font-size: 0;
+      line-height: 0;
+      clear: both;
+  }
+  .recruit-interview-item__head {
+      width: 100%;
+      padding-bottom: 5px;
+  }
+  .recruit-interview-item-shop {
+      display: table;
+      vertical-align: top;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  .recruit-interview-item-shop__ci {
+    display: inline-block;
+    width: 58.1755593804%;
+    padding-right: 3.6144578313%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .recruit-interview-item-shop__ci img {
+    float: left;
+    width: 100%;
+  }
+  .recruit-interview-item-shop__photo {
+    float: right;
+    width: 41.8244406196%;
+    padding: 0 0 5px 5px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .recruit-interview-item-shop__msg {
+      margin-top: 0.5em;
+  }
+  .recruit-interview-schedule__left {
+    float: left;
+    width: 58.1755593804%;
+    padding-right: 2.5817555938%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .recruit-interview-schedule__left img {
+      width: 100%;
+  }
+  .recruit-interview-schedule__right {
+    float: left;
+    width: 41.8244406196%;
+  }
+  .recruit-interview-schedule__right img {
+      width: 100%;
+  }
+  
+  .recruit-interview__col:last-child {
+      float: right;
+  }
+  .recruit-gallery {
+      margin: 0 auto;
+  }
+  .recruit-gallery-container.is-carousel {
+      padding: 2.34375% 0 2.34375% 3.90625%;
+  }
+  .is-carousel .bx-wrapper {
+      max-width: none !important;
+  }
+  .bx-wrapper {
+      left: 0;
+      right: 0;
+      margin: auto;
+  }
+  .page .card-index-bnrArea-btn .page-btn {
+    min-height: 15.625vw;
+    width:95%;
+    font-size: 4.0625vw;
+  }
+}

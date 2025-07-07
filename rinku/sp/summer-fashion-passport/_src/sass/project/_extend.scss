@@ -1,0 +1,50 @@
+/*---------------------------------------------------------------------------*\
+  $EXTEND
+\*---------------------------------------------------------------------------*/
+%width-1440 {
+  width: 100%;
+  max-width: 1440px;
+}
+%img-100 {
+  line-height: 0;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+%bg-text {
+  white-space: nowrap;
+  text-indent: 100%;
+  overflow: hidden;
+}
+%bg-img {
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/*---------------------------------------------------------------------------*\
+  Custom .contents
+\*---------------------------------------------------------------------------*/
+.sale-2024--special {
+  .contents {
+    &.contents--wide {
+      max-width: none;
+      background: url(../images/pc/bg_01.png) no-repeat #d1f2fb;
+      background-position: center top;
+      background-size: 100%;
+    }
+  }
+}
+
+@include mobile() {
+  .sale-2024--special {
+    .contents {
+      &.contents--wide {
+        background: url(../images/mobile/bg_01.png) no-repeat #d1f2fb;
+        background-position: center get_vw(85);
+        background-size: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+
+class Sort{constructor(){this.$win=$(window);this.$html=$('html');this.$body=$('body');this.winH=this.$win.height();this.scT=document.documentElement.scrollTop||document.body.scrollTop;this.$selectYear=$('#js-select-year');this.$selectMonth=$('#js-select-month');this.$selectCenter=$('#js-select-center');this.$releaseFormSelect=$('.release__form--select');this.$releaseOpenBtnWrapper=$('.box-inquiry-btn.js-accBtnWrapper');this.$releaseOpenBtn=this.$releaseOpenBtnWrapper.find('.btn-fade');this.scrFlg=false;this.hash=location.hash;this.hashFlg=false;this.firstFlg=false;this.hashArr;this.dataArr=[];this.curDataArr=[];this.today=new Date();this.centersDataArr={"years":[],"centers":[{"name":"御殿場","place":"静岡県","open":"2000-07-13"},{"name":"佐野","place":"栃木県","open":"2003-03-14"},{"name":"ふかや花園","place":"埼玉県","open":"2022-10-20"},{"name":"あみ","place":"茨城県","open":"2009-07-09"},{"name":"酒々井","place":"千葉県","open":"2013-04-19"},{"name":"りんくう","place":"大阪府","open":"2000-11-23"},{"name":"神戸三田","place":"兵庫県","open":"2007-07-06"},{"name":"仙台泉","place":"宮城県","open":"2008-10-16"},{"name":"土岐","place":"岐阜県","open":"2005-03-04"},{"name":"鳥栖","place":"佐賀県","open":"2004-03-12"}]};this.centersEachYearArr={}
+this.init();};init(){const s=this,$$fetcher=async()=>{const response=await fetch('./_assets/js/data.json').then((response)=>{if(!response.ok){throw new Error();}
+return response.json();}).then((json)=>{s.dataArr=json;s.initDataArr();}).catch((err)=>{console.log(err);});};$$fetcher();$('.js-scroll').each((i,el)=>{const $btn=$(el),href=$btn.attr('href'),$target=$(href);let curHref=location.href;curHref=curHref.replace(/^(.*?)(\?|#).*$/,'$1');if($target[0]){$btn.on('click',(e)=>{e.preventDefault();history.replaceState(null,'',curHref+href);s.scrollTo($target);});}})
+if($('.box-gallery-pager__item')[0]){const $boxGalleryPagerItem=$('.box-gallery-pager__item');$boxGalleryPagerItem.each((i,el)=>{const $btn=$(el).find('a');$btn.on('click',(i,el)=>{if(!$btn.hasClass('active')){$boxGalleryPagerItem.find('a').removeClass('active');$btn.addClass('active');}})})}
+s.onResize();s.$win.on('resize',$.proxy(s.onResize,s));s.$win.on('scroll',$.proxy(s.onScroll,s));};initDataArr(){const s=this;for(let key in s.dataArr){const arr=s.dataArr[key];arr['year']=arr['release'].replace(/^(\d{4}).*/,'$1');arr['month']=arr['release'].replace(/^\d{4}\-(\d{2}).*/,'$1');if(arr['release'].match(/^\d{4}\-\d{2}\-\d{2}/)){arr['date']=arr['release'].replace(/^\d{4}\-\d{2}\-(\d{2})/,'$1');}else{arr['date']='';}
+arr['fiscalYear']=(Number(arr['month'])<=3)?String(Number(arr['year'])-1):arr['year'];arr['changedRelease']=new Date(arr['release']);if(s.centersDataArr['years'].indexOf(arr['year'])===-1)s.centersDataArr['years'].push(arr['year']);}
+s.$selectYear.empty();s.centersDataArr['years'].map((arr,i)=>{s.$selectYear.append(`
+        <option value="${arr}">${arr}年</option>
+      `);});s.$selectYear.on('change',()=>{s.selectChange();})
+for(let i=1,len=12;i<=len;i++){if(i===1){s.$selectMonth.append(`
+          <option value="全て">全て</option>
+        `);};s.$selectMonth.append(`
+        <option value="${String(i).padStart(2, '0')}">${i}月</option>
+      `);}
+s.$selectMonth.val('全て');s.$selectMonth.on('change',()=>{if(!s.hashFlg){s.selectChange();}})
+s.centersDataArr['centers'].map((arr,i)=>{if(i===0){s.$selectCenter.append(`
+          <option value="全施設">全て</option>
+          <option value="共通">共通（コーポレート）</option>
+        `);};s.$selectCenter.append(`
+        <option value="${arr['name']}">${arr['name']}（${arr['place']}）</option>
+      `);arr['yearsForSort']=arr['open'].replace(/\-/g,'');s.$selectCenter.val('全施設');});s.$releaseFormSelect.each((i,el)=>{const $s=$(el),$select=$s.find('select'),$option=$s.find('option');let dummySelectHtml='',curSelectTxt=$select.find(`option[value=${$select.val()}]`).text();$option.each((j,el2)=>{const val=$(el2).val(),txt=$(el2).text();dummySelectHtml+=`
+          <li class="dummySelect_li"><input type="radio" name="dummySelect-${i}" id="dummySelect-${i}_input-${j}" value="${val}" class="dummySelect_input"><label for="dummySelect-${i}_input-${j}">${txt}</label></li>
+        `;})
+$s.append(`
+        <div class="dummySelect_wrapper">
+          <div class="dummySelect_display">${curSelectTxt}</div>
+          <ul class="dummySelect_ul">${dummySelectHtml}</ul>
+        </div>
+      `);const $dummySelectUl=$s.find('.dummySelect_ul'),$dummySelectLi=$s.find('.dummySelect_li'),$dummySelectDisplay=$s.find('.dummySelect_display');$dummySelectLi.each((j,el2)=>{const $s2=$(el2),$input=$s2.find('.dummySelect_input'),val=$input.attr('value'),$label=$s2.find('label'),txt=$label.text();$label.on('click',()=>{$dummySelectUl.removeClass('is-on');});$input.on('change',()=>{if(!s.hashFlg){$dummySelectDisplay.text(txt);$select.val(val);s.selectChange();$dummySelectUl.removeClass('is-on');};});$select.on('change',()=>{if(!s.hashFlg){$dummySelectUl.find(`input[value=${$select.val()}]`).prop('checked',true);$dummySelectDisplay.text($select.find(`option[value=${$select.val()}]`).text());};})});$dummySelectDisplay.on('click',()=>{if($dummySelectDisplay.offset().top-s.scT<(s.winH/2)){$dummySelectUl.removeClass('is-bottom');}else{$dummySelectUl.addClass('is-bottom');}
+if($dummySelectUl.hasClass('is-on')){$dummySelectUl.removeClass('is-on');}else{$('.dummySelect_ul').removeClass('is-on');$dummySelectUl.addClass('is-on');}})});const centersSortByYear=JSON.parse(JSON.stringify(s.centersDataArr['centers']));centersSortByYear.sort((a,b)=>a['yearsForSort']-b['yearsForSort']);centersSortByYear.map((arr,i)=>{s.centersEachYearArr[arr['open']]=[];});for(let key in s.centersEachYearArr){const year=Number(key.replace(/\-/g,''));for(let key2 in s.centersDataArr['centers']){if(year>=Number(s.centersDataArr['centers'][key2]['yearsForSort']))s.centersEachYearArr[key].push(s.centersDataArr['centers'][key2]['name']);}}
+s.$selectCenter.on('change',()=>{if(!s.hashFlg){s.selectChange();}})
+s.selectChange('','hidden');if(s.hash){s.hashArr=s.hash.replace('#','').split('&');$.each(s.hashArr,(i,val)=>{if(val.match(/news/)){const id=val;s.hashFlg=true;s.selectChange(id,'id');}else if(val.match(/pressroom/)){s.selectChange(s.$selectYear.val());setTimeout(()=>{s.scrollTo($(`#${val}`));},300);};});}else{s.selectChange(s.$selectYear.val());};};selectChange(val,type){const s=this,$$returnCenterTags=(arr)=>{let centerTags='';if(arr['center'][0]==='全施設'){let centers=[],releaseDate=Number(arr['release'].replace(/\-/g,'')),counter=0;;for(let key in s.centersEachYearArr){const centerOpenDate=Number(key.replace(/\-/g,''));if(releaseDate>=centerOpenDate){centers=s.centersEachYearArr[key];}
+counter++;}
+centers.forEach((val)=>{centerTags+=`<span class="pr-archives-list__tag is-center">${val}</span>`});}else{arr['center'].forEach((val)=>{centerTags+=`<span class="pr-archives-list__tag is-center">${val}</span>`});}
+return centerTags;};let html='',id='';if(type==='hidden'){s.curDataArr=s.dataArr;}else{if(val&&type==='id'){const curArr=s.dataArr.filter((arr)=>arr['id']===val);if(curArr.length>0){s.$selectYear.val(curArr[0]['year']);s.$selectMonth.val(curArr[0]['month']);s.$selectCenter.val(curArr[0]['center'][0]);id=val;s.$releaseFormSelect.each((i,el)=>{const $s=$(el),$dummySelectUl=$s.find('.dummySelect_ul'),$dummySelectDisplay=$s.find('.dummySelect_display'),$select=$s.find('select');let selectType=$select.attr('id').replace('js-select-',''),curArrVal=(selectType==='center')?curArr[0][selectType][0]:curArr[0][selectType];$dummySelectUl.find(`input[value=${curArrVal}]`).prop('checked',true);$dummySelectDisplay.text($select.find(`option[value=${curArrVal}]`).text());})
+s.hashFlg=false;}}
+let year=s.$selectYear.val(),month=s.$selectMonth.val(),center=s.$selectCenter.val(),releaseCenterOpen;for(let key in this.centersDataArr['centers']){if(this.centersDataArr['centers'][key]['name']===center){releaseCenterOpen=this.centersDataArr['centers'][key]['open'];}}
+if(center!=='全施設'&&center!=='共通'){s.curDataArr=s.dataArr.filter((arr)=>arr['center'].indexOf(center)>-1||arr['center'].indexOf('全施設')>-1||arr['center'].indexOf('共通')>-1);s.curDataArr=s.curDataArr.filter((arr)=>(Number(arr['release'].replace(/\-/g,''))<Number(releaseCenterOpen.replace(/\-/g,''))&&(arr['center'].indexOf('全施設')>-1&&arr['center'].indexOf('共通')===-1))===false);}else if(center==='共通'){s.curDataArr=s.dataArr.filter((arr)=>(arr['center'].indexOf('共通')>-1));}else{s.curDataArr=s.dataArr;};if(month==='全て'){s.curDataArr=s.curDataArr.filter((arr)=>arr['year']===year);}else{s.curDataArr=s.curDataArr.filter((arr)=>arr['year']===year&&arr['month']===month);}
+if(s.curDataArr.length===0)html+='<li class="empty">該当する記事がありません。</li>'}
+let listCounter=0,firstViewMax=5;s.curDataArr.map((arr)=>{let categoryClass='flag--press';if(arr['category']==='Newsletter'){categoryClass='flag--news';};if(s.curDataArr.length>firstViewMax&&listCounter===firstViewMax&&!s.firstFlg){html+=`</ul><ul class="release__archives--list js-accTarget">`;};html+=`
+        <li class="${(type === 'hidden') ? '' : 'pr-archives-list__wrapper'} ${(type !== 'hidden' && (s.curDataArr.length > firstViewMax && listCounter >= firstViewMax) && !s.firstFlg) ? 'is-firsthidden' : 'is-firstview'}" id="${(type === 'hidden') ? '' : arr['id']}">
+            <dl class="pr-archives-list">
+                <dt class="pr-archives-list__title">
+                  <p class="pr-archives-list__date">${arr['year']}/${arr['month']}${(arr['date'] !== '') ? `/${arr['date']}` : '' }
+                  </p>
+                  <p class="pr-archives-list__tags">${(arr['category'] !== '') ? `<span class="pr-archives-list__tag ${categoryClass}">${arr['category']}</span>` : ''}${$$returnCenterTags(arr)}</p>
+                </dt>
+                <dd class="pr-archives-list__detail">
+                    <p>
+                      <a href="${arr['url']}" target="${arr['target']}">
+                          ${arr['title']}
+                      </a>${(arr['fileSize'] !== '') ? `<span>（<span class="ico-pdf"><img src="/_assets_rev03/images/common/icon/icon_pdf.svg"alt="PDFファイル"class="ico-image--pdf"></span>${arr['fileSize']}）</span>` : ''}
+                    </p>
+                    ${(arr['extra'] !== '') ? arr['extra'] : ''}
+                </dd>
+            </dl>
+        </li>
+      `;listCounter++;})
+if(type==='hidden'){s.$body.append(`<div class="hiddenList" style="display:none;"><ul>${html}</ul></div>`);}else{$('.pr-archives').find('.release__archives--list_wrapper').html(`<ul class="release__archives--list">${html}</ul>`);if(s.curDataArr.length>firstViewMax&&!s.firstFlg){const $target=$('.release__archives--list_wrapper').find('.js-accTarget');s.$releaseOpenBtn.removeClass('is-on');s.acc(s.$releaseOpenBtn,$target);}else{s.$releaseOpenBtn.off().addClass('is-on');}};$('.pr-archives-list__wrapper.is-firstview').each((i,el)=>{setTimeout(()=>{$(el).addClass('is-on');},i*100);});if(id!==''&&!s.scrFlg&&$(`#${id}`)[0]){if($('.release__archives--list.js-accTarget').find(`#${id}`)[0]){s.$releaseOpenBtn.addClass('is-on');$('.release__archives--list_wrapper').find('.js-accTarget').slideDown(0,'swing');$('.release__archives--list_wrapper').find('.js-accTarget').find('.pr-archives-list__wrapper.is-firsthidden').each((i,el)=>{setTimeout(()=>{$(el).addClass('is-on');},i*0);});};window.addEventListener("load",(e)=>{s.scrollTo($(`#${id}`));});};};acc($btn,$target){$btn.off().on('click',(e)=>{e.preventDefault();if($btn.hasClass('is-on')){$btn.removeClass('is-on');$target.slideUp(400,'swing',()=>{$target.find('is-on').removeClass('is-on');});}else{$btn.addClass('is-on');$target.slideDown(400,'swing');$target.find('.pr-archives-list__wrapper.is-firsthidden').each((i,el)=>{setTimeout(()=>{$(el).addClass('is-on');},i*100);});}})};scrollTo($target){const s=this;if($target[0]&&!s.scrFlg){s.scrFlg=true;let gap=$('.header').outerHeight();if(!$('body').hasClass('is-scroll')){gap=gap*2;}
+$('html, body').animate({scrollTop:($target.offset().top-gap)+'px'},300,'swing',()=>{s.scrFlg=false;});};};onScroll(){const s=this;this.scT=document.documentElement.scrollTop||document.body.scrollTop;$('.dummySelect_ul').removeClass('is-on');};onResize(e){const s=this;this.winW=this.$win.width();this.winH=this.$win.height();this.onScroll();};};const SORT=new Sort();

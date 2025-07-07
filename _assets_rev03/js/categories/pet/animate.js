@@ -1,0 +1,3 @@
+
+if(window.NodeList&&!NodeList.prototype.forEach){NodeList.prototype.forEach=Array.prototype.forEach;}
+window.onscroll=function(){var bottom_of_window=window.pageYOffset+window.outerHeight;document.querySelectorAll(".appear2").forEach(function(it){var bottom_of_object=it.offsetTop;if(bottom_of_window>bottom_of_object){it.classList.add("inview2")}})};$(document).ready(function(){var bottom_of_window=window.pageYOffset+window.outerHeight;document.querySelectorAll(".appear2").forEach(function(it){var bottom_of_object=it.offsetTop;if(bottom_of_window>bottom_of_object){it.classList.add("inview2")}})});

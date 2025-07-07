@@ -1,0 +1,68 @@
+/*---------------------------------------------------------------------------*\
+  $CUSTOM
+\*---------------------------------------------------------------------------*/
+/**
+ *
+ */
+/* WebFont使用時のみ
+html {
+  visibility: hidden;
+  &.wf-active, &.loading-delay {
+    visibility: visible;
+  }
+}
+*/
+
+.pc-block {
+  display: block !important;
+
+  @include mobile() {
+    display: none !important;
+  }
+}
+
+.sp-block {
+  display: none !important;
+
+  @include mobile() {
+    display: block !important;
+  }
+}
+
+.sp-flex {
+  display: none !important;
+
+  @include mobile() {
+    display: flex !important;
+  }
+}
+
+.pc-flex {
+  display: flex !important;
+
+  @include mobile() {
+    display: none !important;
+  }
+}
+
+.is-pc {
+  display: block;
+
+  @include mobile() {
+    display: none !important;
+  }
+}
+
+.is-sp {
+  display: none;
+
+  @include mobile() {
+    display: block;
+  }
+}
+
+// Font Zen Kaku Gothic New
+.f-zen {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 400;
+}

@@ -1,0 +1,829 @@
+@charset "UTF-8";
+.map-note {
+    margin-top: -15px;
+}
+
+.floormap {
+	position: relative;
+    width: 100%;
+    max-width: 1160px;
+    /* width: 944px; */
+    margin: 0 auto 25px;
+    border: 2px solid #eeeeee;
+    overflow: hidden;
+    background: #fff;
+}
+
+.floormap > .frame {
+    width: 100%;
+    padding: 6px 14px;
+    color: #ffffff;
+    background-color: #9f005b;
+}
+
+.floormap > .frame img {
+    display: block;
+}
+
+.map-area {
+    width: 100%;
+    max-width: 1160px;
+    /* height: 519px; */
+    /* height: 70.1754vw; */
+    height: 68.9655vw;
+    max-height: 800px;
+    position: relative;
+    z-index: 0;
+}
+
+.map-area img {
+    height: auto;
+}
+
+.map-area .map-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+.map-area .intro {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.map-area .intro .zone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.map-area .intro .zone img{
+	cursor: pointer;
+}
+
+.map-area .intro.gotemba .zone,
+.map-area .intro.rinku .zone,
+.map-area .intro.sendaiizumi .zone{
+	/* content: ''; */
+	display: block;
+	width: 56.14vw;
+	max-width: 680px;
+	height: 42.1vw;
+	max-height: 330px;
+	/* background-color: #ff0000; */
+	top:50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.map-area .intro.gotemba .zone img,
+.map-area .intro.rinku .zone img,
+.map-area .intro.sendaiizumi .zone img{
+	/* width: auto;
+	height: 100%; */
+	width: 100%;
+	height: auto;
+}
+
+.map-area .intro.gotemba .west {
+    position: absolute;
+    /* top: 20px;
+    left: 155px; */
+	top:0;
+	left: 0;
+	width: 44.6875%;
+	/* height: 38.625%; */
+}
+
+.map-area .intro.gotemba .east {
+    position: absolute;
+    /* top: 60px;
+    left: 418px; */
+	/* top:40px;
+	left: 263px; */
+
+	top:0;
+	left: 40.07%;
+	width: 58.44%;
+	/* height: 35.375%; */
+	transform: translate(0,12%);
+}
+
+.map-area .intro.gotemba .hill {
+    position: absolute;
+    /* top: 225px;
+    left: 370px; */
+	/* top:205px;
+	left: 215px; */
+	/* top:42.7%; */
+	/* top:61%; */
+	transform: translate(0,71%);
+	/* left: 33.59%; */
+	left: 32%;
+	width: 47.03%;
+	/* height: 34.475%; */
+}
+
+.map-area .intro.rinku .zone{
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	width: 71.56vw;
+	max-width: 850px;
+	height: 42.1vw;
+	max-height: 330px;
+}
+.map-area .intro.sendaiizumi .zone{
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	width: 57.894vw;
+	max-width: 660px;
+	height: 42.1vw;
+	max-height: 330px;
+}
+
+
+.zone_move li {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    display: none;
+}
+
+.zone_move li.bt_west {
+    /* top: 180px;
+    left: 0; */
+	top: calc(50% - 150px);
+    left: 0px;
+	width:140px;
+	height: 40px;
+	transform: translate(-50%,-50%) rotate(90deg);
+	transform-origin:center bottom;
+	font-size: 13px;
+	font-size:1.3rem;
+	background-color: #fff;
+	text-align: center;
+	line-height: 40px;
+	box-shadow: 4px -6.928px 12.87px 0.13px rgba(0, 0, 0, 0.1);
+}
+
+.zone_move li.bt_east {
+    top: 50%;
+    right: 0px;
+	width:140px;
+	height: 40px;
+	transform: translate(50%,0) rotate(90deg);
+	transform-origin:center top;
+	font-size: 13px;
+	font-size:1.3rem;
+	background-color: #fff;
+	text-align: center;
+	line-height: 40px;
+	box-shadow: 4px 6.928px 12.87px 0.13px rgba(0, 0, 0, 0.1);
+}
+
+.zone_move li.bt_hill {
+    top: calc(50% + 0px);
+    left: 0px;
+	width:140px;
+	height: 40px;
+	transform: translate(-50%,-50%) rotate(90deg);
+	transform-origin:center bottom;
+	font-size: 13px;
+	font-size:1.3rem;
+	background-color: #fff;
+	text-align: center;
+	line-height: 40px;
+	box-shadow: 4px -6.928px 12.87px 0.13px rgba(0, 0, 0, 0.1);
+}
+
+.zone_move li.bt_1f {
+    top: calc(50%);
+    left: 0px;
+	width:140px;
+	height: 40px;
+	transform: translate(-50%,-50%) rotate(90deg);
+	transform-origin:center bottom;
+	font-size: 13px;
+	font-size:1.3rem;
+	background-color: #fff;
+	text-align: center;
+	line-height: 40px;
+	box-shadow: 4px -6.928px 12.87px 0.13px rgba(0, 0, 0, 0.1);
+}
+
+.zone_move li.bt_2f {
+    top: 50%;
+    right: 0px;
+	width:140px;
+	height: 40px;
+	transform: translate(50%,0) rotate(90deg);
+	transform-origin:center top;
+	font-size: 13px;
+	font-size:1.3rem;
+	background-color: #fff;
+	text-align: center;
+	line-height: 40px;
+	box-shadow: 4px 6.928px 12.87px 0.13px rgba(0, 0, 0, 0.1);
+}
+
+.map-area .maps {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.map-area .map-l {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.map-area .map-l .map-main {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+    cursor: url(/_assets/images/common/map/tenohira1.cur), pointer;
+}
+
+.map-area .map-l .map-main.drag {
+    cursor: url(/_assets/images/common/map/tenohira2.cur), pointer;
+}
+
+.map-area .map-l .map-main img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-backface-visibility: hidden;
+}
+
+.map-area .spread {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: none;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.map-area .spread .spread-bg {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.map-area .spread ul {
+    display: table;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.map-area .spread ul li {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.map-area .spread ul li > img {
+    display: inline-block;
+    width: auto;
+    height: 380px;
+}
+
+.map-area .spread.tosu ul li > img {
+    height: 300px;
+}
+
+.map-area .spread.gotemba ul li > img {
+    height: 297px;
+}
+
+.map-area .map-s {
+    position: absolute;
+    z-index: 1;
+}
+
+.map-area .map-s img {
+    display: block;
+    height: auto;
+}
+
+.map-area .map-s.toki {
+    bottom: 10px;
+    right: 8px;
+}
+
+.map-area .map-s.ami {
+    bottom: 10px;
+    right: 8px;
+}
+
+.map-area .map-s.kobesanda {
+    bottom: 3px;
+    right: 10px;
+}
+
+.map-area .map-s.sano {
+    bottom: 5px;
+    left: 5px;
+}
+
+.map-area .map-s.shisui {
+    bottom: 3px;
+    right: 10px;
+}
+
+.map-area .map-s.tosu {
+    bottom: 5px;
+    right: 10px;
+}
+
+.map-area .map-s.gotemba {
+    bottom: 5px;
+    left: 5px;
+}
+
+.map-area .map-s.rinku.f1 {
+    bottom: 10px;
+    left: 5px;
+}
+
+.map-area .map-s.rinku.f2 {
+    bottom: 15px;
+    right: 5px;
+}
+
+.map-area .map-s.sendaiizumi.f1,
+.map-area .map-s.sendaiizumi.f2 {
+    bottom: 10px;
+    left: 5px;
+}
+
+.map-area .map-s .map-header {
+    display: block;
+    height: 15px;
+    background: #000;
+    padding: 0 0 0 3px;
+    border-bottom: 1px solid #b8b1ab;
+    color: #fff;
+    font-size: 11px;
+    line-height: 15px;
+    text-align: left;
+}
+
+.map-area .map-s .map-main {
+    border: 1px solid #b8b1ab;
+    background: #fff;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.map-area .map-s .map-main .cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: #fff;
+    cursor: move;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.map-area .map-s .map-ctrl {
+    border: 1px solid #ffcc66;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.map-area .map-s .map-ctrl > div {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+.map-area .zoom-btn {
+    width: 76px;
+    height: 48px;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 10px;
+    background: url(/_assets/images/common/map/zoom_bg.png);
+}
+
+.map-area .zoom-btn > div {
+    position: absolute;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    cursor: pointer;
+}
+
+.map-area .zoom-btn > div.on {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    cursor: default;
+}
+
+.map-area .zoom-btn .zoom-in {
+    top: 20px;
+    left: 10px;
+    filter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/_assets/images/common/map/zoom_btn0.png", sizingMethod="scale")';
+}
+
+.map-area .zoom-btn .zoom-out {
+    top: 20px;
+    right: 10px;
+    filter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/_assets/images/common/map/zoom_btn1.png", sizingMethod="scale")';
+}
+
+/*--------------------------------------------
+ アクセスマップ
+--------------------------------------------*/
+
+.floormap.access {
+    width: 700px;
+    height: 450px;
+    margin: 0 0 15px 0;
+}
+
+.floormap.access .map-area {
+    width: 100%;
+    height: 100%;
+}
+
+.floormap.access .map-s.kobesanda {
+    right: auto;
+    bottom: 5px;
+    left: 10px;
+}
+
+.floormap.access .map-s.sano {
+    right: 5px;
+    left: auto;
+    bottom: 0;
+}
+
+.floormap.access .map-s.tosu {
+    right: auto;
+    left: 10px;
+}
+
+.floormap.access .map-s.rinku {
+    bottom: 10px;
+    right: 10px;
+}
+
+#ami-point1,
+#ami-point2,
+#kobe-point1,
+#kobe-point2,
+#tosu-point1,
+#tosu-point2,
+#gotemba-point1,
+#gotemba-point2 {
+    width: 50px;
+    height: 50px;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+    -webkit-animation: point 1.2s infinite ease-out;
+    animation: point 1.2s infinite ease-out;
+}
+
+#ami-point1 > img,
+#ami-point2 > img,
+#kobe-point1 > img,
+#kobe-point2 > img,
+#tosu-point1 > img,
+#tosu-point2 > img,
+#gotemba-point1 > img,
+#gotemba-point2 > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#ami-point1 {
+    top: 39px;
+    left: -56px;
+}
+
+#ami-point2 {
+    top: 583px;
+    left: 9px;
+}
+
+#kobe-point1 {
+    top: 53px;
+    left: 64px;
+}
+
+#kobe-point2 {
+    top: 902px;
+    left: 383px;
+}
+
+#tosu-point1 {
+    top: 423px;
+    left: -35px;
+}
+
+#tosu-point2 {
+    top: 610px;
+    left: 162px;
+}
+
+#gotemba-point1 {
+    top: 143px;
+    left: 141px;
+}
+
+#gotemba-point2 {
+    top: 449px;
+    left: 370px;
+}
+
+@-webkit-keyframes point {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes point {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+.maps.gotemba-west {
+    width: 1200px !important;
+    height: auto;
+}
+
+.map-area .map-l .map-main img.per-W100 {
+    width: 100% !important;
+    height: auto;
+}
+
+.map-area .map-l .map-main img.per-H100 {
+    width: auto;
+    height: 100% !important;
+}
+
+.maps.is-disable {
+    pointer-events: none;
+	
+}
+
+.maps.is-disable .map-wrap{
+	position: relative;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.maps.is-disable .map-wrap img{
+	/* transform: translate(-50%,0);
+	left: 50%; */
+	transform: translate(-50%,-50%);
+	left: 50%;
+	top:50%;
+}
+
+.maps.is-disable .map-s{
+	visibility: hidden;
+}
+
+.is-cover .maps-ui{display: none;}
+.floormap.is-cover .frame{
+	display: block;
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+}
+.floormap .frame{display: none;}
+
+.maps-ui{
+	position: absolute;
+	top:20px;
+	left: 20px;
+	z-index: 1;
+}
+
+.maps-ui .maps-ui__btn{
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background-color: #f1f1f1;
+	margin-right: 10px;
+	position: relative;
+	box-shadow: 4px 6.928px 12.87px 0.13px rgba(0, 0, 0, 0.2);
+	transition: opacity 0.5s;
+}
+
+.maps-ui .maps-ui__btn.active{
+	pointer-events: none;
+	opacity: 0.3;
+}
+
+.maps-ui .maps-ui__btn:hover{
+	opacity: 0.5;
+}
+
+.maps-ui .maps-ui__btn--plus::before,
+.maps-ui .maps-ui__btn--minus::before{
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 3px;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background-color: #000;
+}
+
+.maps-ui .maps-ui__btn--plus::after{
+	content: '';
+	position: absolute;
+	width: 3px;
+	height: 20px;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background-color: #000;
+}
+
+
+.page .brands .page-contents.is-floormap .bt_zone:after {
+    -webkit-transition: .7s cubic-bezier(.475, .425, 0, .995);
+    position: absolute;
+    right: auto;
+    bottom: -60px;
+    left: -40px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #000;
+    content: "";
+    transition: .7s cubic-bezier(.475, .425, 0, .995)
+  }
+
+  .page .brands .page-contents.is-floormap .bt_zone {
+    -webkit-transition: all .2s ease-out;
+    /* position: relative; */
+    overflow: hidden;
+    transition: all .2s ease-out
+  }
+
+  .page .brands .page-contents.is-floormap .bt_zone:hover {
+    color: #fff
+  }
+
+  .page .brands .page-contents.is-floormap .bt_zone:hover:after{
+	width:500px;
+	height:250px;
+	opacity:1;
+	z-index: -1;
+  }
+
+  /* .page .brands .page-contents.is-floormap .floormap-info a{
+	color: #003399;
+  } */
+
+/*--------------------------------------------
+ SP
+--------------------------------------------*/
+
+@media screen and (max-width: 640px) {
+    .map-s {
+        /* display: none; */
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .map-area .map-l .map-main img {
+        max-width: inherit;
+        max-height: inherit;
+    }
+
+    .map-area {
+        width: 100%;
+        height: 116.393443vw;
+        position: relative;
+        z-index: 0;
+    }
+
+	.map-area .intro.gotemba .zone{
+		width: 85.333vw;
+		height: 64vw;
+	}
+
+	.bt_zone{
+		display: none !important;
+	}
+
+	.maps-ui{
+	position: absolute;
+	top:0.78vw;
+	left: 4.6875vw;
+	z-index: 1;
+}
+
+	.maps-ui .maps-ui__btn{
+		width: 9.375vw;
+		height: 9.375vw;
+		margin-right:1.5625vw;
+	}
+
+	
+
+	.maps-ui .maps-ui__btn--plus::before,
+	.maps-ui .maps-ui__btn--minus::before{
+
+		width: 3.125vw;
+		height: 0.4vw;
+	}
+
+	.maps-ui .maps-ui__btn--plus::after{
+		width: 0.4vw;
+		height: 3.125vw;
+	}
+
+	.map-area .intro.gotemba .east {
+		position: absolute;
+		/* top: 60px;
+		left: 418px; */
+		/* top:40px;
+		left: 263px; */
+		top:8%;
+		left: 40.07%;
+		width: 58.44%;
+		transform: none;
+		/* height: 35.375%; */
+	}
+
+	.map-area .intro.gotemba .hill {
+		top:42.7%;
+		left: 33.59%;
+		transform: none;
+		/* height: 34.475%; */
+	}
+}

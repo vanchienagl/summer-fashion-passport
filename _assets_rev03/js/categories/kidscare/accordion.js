@@ -1,0 +1,2 @@
+
+$(window).on('load resize',function(){if($(window).innerWidth()<979){$('.js-ac-head').attr('aria-expanded','false');$('.js-ac-body[role="region"]').attr('aria-hidden','true');}else{$('.js-ac-head').attr('aria-expanded','true');$('.js-ac-body[role="region"]').attr('aria-hidden','false');}});
