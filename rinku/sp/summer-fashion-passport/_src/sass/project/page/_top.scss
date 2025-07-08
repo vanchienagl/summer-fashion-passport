@@ -486,6 +486,8 @@
       &-content {
         padding: get_pcvw(40);
         width: get_pcvw(972);
+        max-height: 80vh;
+        overflow-y: scroll;
       }
       &-inner {
         gap: get_pcvw(30);
@@ -612,6 +614,8 @@
             &::after {
               width: get_vw(17);
               height: get_vw(23);
+              background-position: center;
+              background-size: cover;
             }
           }
           &-button-prev {
@@ -634,6 +638,16 @@
           }
           &-controls {
             flex-shrink: 0;
+            .btn-toggle-autoplay {
+              &.is-pause {
+                width: get_vw(28);
+                height: get_vw(32);
+              }
+              &.is-play {
+                width: get_vw(32);
+                height: get_vw(32);
+              }
+            }
           }
         }
       }
@@ -647,7 +661,7 @@
 
       &-content {
         width: calc(100% - var(--spacing));
-        height: 75vh;
+        max-height: 75vh;
         padding: get_vw(20) get_vw(20) get_vw(40) get_vw(20);
         overflow-y: scroll;
         margin: 0 auto;
