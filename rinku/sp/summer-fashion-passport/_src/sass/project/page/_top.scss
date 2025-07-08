@@ -189,18 +189,62 @@
           border-radius: 50%;
           opacity: 0.8;
           &::after {
-            @include fs(20);
-            color: #fff;
+            font-size: 0;
+            width: 17px;
+            height: 23px;
+            background-position: center;
+            background-size: cover;
           }
         }
         &-button-prev {
           left: -20px;
+          &::after {
+            background: url(../images/pc/icon-arrow.png) no-repeat;
+          }
         }
         &-button-next {
           right: -20px;
+          &::after {
+            background: url(../images/pc/icon-arrow.png) no-repeat;
+            transform: scaleX(-1);
+          }
         }
         &-pagination {
-          display: none;
+          position: static;
+          width: fit-content;
+          &-wrap {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+          }
+          &-bullet {
+            &-active {
+              opacity: 1;
+            }
+            background-color: #fff;
+            opacity: 0.58;
+          }
+        }
+        &-controls {
+          .btn-toggle-autoplay {
+            transition: all 0.3s;
+            &.is-pause {
+              width: 28px;
+              height: 32px;
+              background: url(../images/pc/icon-pause.png) no-repeat;
+              background-position: center;
+              background-size: contain;
+            }
+            &.is-play {
+              width: 28px;
+              height: 28px;
+              background: url(../images/pc/icon-play.png) no-repeat;
+              background-position: center;
+              background-size: contain;
+            }
+          }
         }
       }
     }
@@ -416,6 +460,12 @@
           }
           &-button-prev,
           &-button-next {
+            &::after {
+              width: get_pcvw(17);
+              height: get_pcvw(23);
+              background-position: center;
+              background-size: cover;
+            }
             width: get_pcvw(45);
             height: get_pcvw(45);
           }
@@ -556,8 +606,10 @@
           &-button-next {
             width: get_vw(58);
             height: get_vw(58);
+            top: 37%;
             &::after {
-              @include fsvw(20);
+              width: get_vw(17);
+              height: get_vw(23);
             }
           }
           &-button-prev {
@@ -567,13 +619,19 @@
             right: get_vw(10);
           }
           &-pagination {
-            display: block;
-            bottom: get_vw(-80);
+            &-wrap {
+              display: flex;
+              margin-top: get_vw(40);
+              gap: get_vw(12);
+            }
             &-bullet {
               width: get_vw(33);
               height: get_vw(33);
               margin: 0 get_vw(8);
             }
+          }
+          &-controls {
+            flex-shrink: 0;
           }
         }
       }

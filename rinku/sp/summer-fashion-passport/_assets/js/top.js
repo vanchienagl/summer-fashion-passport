@@ -1,50 +1,65 @@
 import data from './data.js';
-console.log(data);
 
 function renderSwiperFromData(categoryKey, dataList) {
   const container = document.getElementById(`swiper_${categoryKey}`);
   if (!container) return;
 
+  // Create template HTML Swiper
   const swiperId = `js-swiper-${categoryKey}`;
   const html = `
     <div class="sec-item__swiper">
       <div class="swiper ${swiperId}">
         <div class="swiper-wrapper">
-          ${dataList.map(item => `
-            <div class="swiper-slide" data-id="${item.id}">
+          ${dataList.map((item, index) => `
+            <div class="swiper-slide">
               <div class="logo">
-                <img src="${item.logo}" width="360" height="280" alt="${item.brand}" loading="lazy" decoding="async">
+                <img src="${item.logo}" width="360" height="280" alt="Logo" loading="lazy" decoding="async">
               </div>
               <div class="image">
                 <img src="${item.image}" width="750" height="900" alt="${item.brand}" loading="lazy" decoding="async">
               </div>
+              <div class="popup-data" style="display: none"
+                data-logo="${item.logo}"
+                data-image="${item.image}"
+                data-name='${item.name}'
+                data-desc='${item.desc}'
+              ></div>
             </div>
           `).join('')}
         </div>
       </div>
+
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
-      <div class="swiper-pagination"></div>
+
+      <div class="swiper-pagination-wrap">
+        <div class="swiper-pagination"></div>
+        <div class="swiper-controls">
+          <button class="btn-toggle-autoplay is-pause"></button>
+        </div>
+      </div>
     </div>
   `;
   container.innerHTML = html;
 
-  // Swiper setup
-  const swiperContainer = container.querySelector(`.${swiperId}`);
-  const swiperPagination = container.querySelector('.swiper-pagination');
-  const swiperNext = container.querySelector('.swiper-button-next');
-  const swiperPrev = container.querySelector('.swiper-button-prev');
+  // Get the correct swiper element according to the assigned class
+  const swiperEl = container.querySelector(`.${swiperId}`);
 
-  new Swiper(swiperContainer, {
+  // Initialize Swiper instance
+  const swiperInstance = new Swiper(swiperEl, {
     loop: true,
     spaceBetween: 10,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
     pagination: {
-      el: swiperPagination,
+      el: container.querySelector('.swiper-pagination'),
       clickable: true,
     },
     navigation: {
-      nextEl: swiperNext,
-      prevEl: swiperPrev,
+      nextEl: container.querySelector('.swiper-button-next'),
+      prevEl: container.querySelector('.swiper-button-prev'),
     },
     breakpoints: {
       0: { slidesPerView: 3 },
@@ -52,19 +67,32 @@ function renderSwiperFromData(categoryKey, dataList) {
     },
   });
 
-  // Click => open popup
+  // Attach play/pause event
+  const btnToggle = container.querySelector('.btn-toggle-autoplay');
+  btnToggle?.addEventListener('click', () => {
+    if (btnToggle.classList.contains('is-pause')) {
+      swiperInstance.autoplay.stop();
+      btnToggle.classList.remove('is-pause');
+      btnToggle.classList.add('is-play');
+    } else {
+      swiperInstance.autoplay.start();
+      btnToggle.classList.remove('is-play');
+      btnToggle.classList.add('is-pause');
+    }
+  });
+
+  // Attach popup open event
   container.querySelectorAll('.swiper-slide').forEach(slide => {
     slide.addEventListener('click', () => {
-      const itemId = parseInt(slide.dataset.id);
-      const item = dataList.find(i => i.id === itemId);
-      if (item) {
-        showModalPopup({
-          logo: item.logo,
-          image: item.image,
-          name: item.name,
-          desc: item.desc,
-        });
-      }
+      const data = slide.querySelector('.popup-data');
+      if (!data) return;
+
+      const logo = data.dataset.logo;
+      const image = data.dataset.image;
+      const name = data.dataset.name;
+      const desc = data.dataset.desc;
+
+      showModalPopup({ logo, image, name, desc });
     });
   });
 }
@@ -98,15 +126,15 @@ function setupModalClose() {
   });
 }
 
-// Khởi tạo toàn bộ
+// Initialize all
 document.addEventListener("DOMContentLoaded", function () {
-  // Gọi hàm cho từng danh mục
+  // Call function for each category
   renderSwiperFromData('t_shirt', data.t_shirt);
   renderSwiperFromData('casual_fashion', data.casual_fashion);
   renderSwiperFromData('shoes', data.shoes);
   renderSwiperFromData('fashion_items', data.fashion_items);
   renderSwiperFromData('summer_goods', data.summer_goods);
 
-  // Khởi tạo đóng modal
+  // Initialize modal close
   setupModalClose();
 });
