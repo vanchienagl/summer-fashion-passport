@@ -212,6 +212,7 @@
         &-pagination {
           position: static;
           width: fit-content;
+          display: flex;
           &-wrap {
             display: none;
             align-items: center;
@@ -228,6 +229,7 @@
           }
         }
         &-controls {
+          display: inline-flex;
           .btn-toggle-autoplay {
             transition: all 0.3s;
             &.is-pause {
@@ -238,8 +240,8 @@
               background-size: contain;
             }
             &.is-play {
-              width: 28px;
-              height: 28px;
+              width: 32px;
+              height: 32px;
               background: url(../images/pc/icon-play.png) no-repeat;
               background-position: center;
               background-size: contain;
