@@ -168,7 +168,6 @@
 
     &-content {
       width: calc(100% - var(--spacing));
-      max-height: 85vh;
       padding: get_vw(20) get_vw(20) get_vw(40) get_vw(20);
       overflow-y: auto;
       margin: 0 auto;
