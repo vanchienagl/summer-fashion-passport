@@ -13,16 +13,17 @@ function renderSwiperFromData(categoryKey, dataList) {
           ${dataList.map((item, index) => `
             <div class="swiper-slide">
               <div class="logo">
-                <img src="${item.logo}" width="360" height="280" alt="Logo" loading="lazy" decoding="async">
+                <img src="${item.logo}" width="360" height="280" alt="${item.brand}" loading="lazy" decoding="async">
               </div>
               <div class="image">
-                <img src="${item.image}" width="750" height="900" alt="${item.brand}" loading="lazy" decoding="async">
+                <img src="${item.image}" width="750" height="900" alt="" loading="lazy" decoding="async">
               </div>
               <div class="popup-data" style="display: none"
                 data-logo="${item.logo}"
                 data-image="${item.image}"
                 data-name='${item.name}'
                 data-desc='${item.desc}'
+                data-brand='${item.brand}'
               ></div>
             </div>
           `).join('')}
@@ -91,18 +92,21 @@ function renderSwiperFromData(categoryKey, dataList) {
       const image = data.dataset.image;
       const name = data.dataset.name;
       const desc = data.dataset.desc;
+      const brand = data.dataset.brand;
 
-      showModalPopup({ logo, image, name, desc });
+      showModalPopup({ logo, image, name, desc, brand });
     });
   });
 }
 
-function showModalPopup({ logo, image, name, desc }) {
+function showModalPopup({ logo, image, name, desc, brand }) {
   const modal = document.getElementById("popupModal");
   if (!modal) return;
 
   modal.querySelector('.modal-logo.is-sp img').src = logo;
+  modal.querySelector('.modal-logo.is-sp img').alt = brand;
   modal.querySelector('.modal-logo.is-pc img').src = logo;
+  modal.querySelector('.modal-logo.is-pc img').alt = brand;
   modal.querySelector('.modal-image img').src = image;
 
   const nameContainer = modal.querySelector('.modal-name');

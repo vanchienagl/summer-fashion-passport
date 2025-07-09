@@ -61,8 +61,66 @@ html {
   }
 }
 
-// Font Zen Kaku Gothic New
+/*---------------------------------------------------------------------------*\
+  Font Zen Kaku Gothic New
+\*---------------------------------------------------------------------------*/
 .f-zen {
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-weight: 400;
+}
+
+/*---------------------------------------------------------------------------*\
+  Custom .contents
+\*---------------------------------------------------------------------------*/
+.sale-2024--special {
+  .contents {
+    &.contents--wide {
+      max-width: none;
+      background-image: url(../images/pc/bg_01.png);
+      background-color: #d1f2fb;
+      background-repeat: no-repeat;
+      background-position: center top -32px;
+      background-size: 100%;
+      padding-bottom: 120px;
+
+      @include pcmiddle() {
+        background-position: center top get_pcvw(-32);
+        padding-bottom: get_pcvw(120);
+      }
+
+      @include mobile() {
+        background-image: url(../images/mobile/bg_01.png);
+        background-position: center top get_vw(85);
+        padding-bottom: get_vw(75);
+      }
+    }
+  }
+}
+
+/*---------------------------------------------------------------------------*\
+  Custom Footer
+\*---------------------------------------------------------------------------*/
+.page .footer {
+  margin-top: 0;
+  &-wrap {
+    &.text-light {
+      padding-top: 120px;
+    }
+  }
+
+  @include pcmiddle() {
+    &-wrap {
+      &.text-light {
+        padding-top: get_pcvw(120);
+      }
+    }
+  }
+
+  @include mobile() {
+    &-wrap {
+      &.text-light {
+        padding-top: get_vw(75);
+      }
+    }
+  }
 }

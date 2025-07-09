@@ -1,0 +1,57 @@
+/*---------------------------------------------------------------------------*\
+  Main Heading
+\*---------------------------------------------------------------------------*/
+.main-heading {
+  background: url(../images/pc/bg_h1.png) no-repeat;
+  background-position: center 27px;
+  background-size: 1407px 514px;
+  padding-top: 82px;
+  margin-bottom: 32px;
+  img {
+    width: 421px;
+    margin: 0 auto;
+  }
+  .text {
+    display: block;
+    @include fs(26);
+    font-weight: 900;
+    line-height: calc(49/26);
+    color: #fff;
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  @include pcmiddle() {
+    background-position: center get_pcvw(27);
+    background-size: get_pcvw(1407) get_pcvw(514);
+    padding-top: get_pcvw(82);
+    margin-bottom: get_pcvw(32);
+    img {
+      width: get_pcvw(421);
+    }
+    .text {
+      margin-top: get_pcvw(48);
+    }
+  }
+
+  @include mobile() {
+    background: url(../images/mobile/bg_h1.png) no-repeat;
+    background-position: center top get_vw(-42);
+    background-size: get_vw(640) get_vw(642);
+    padding-top: get_vw(144);
+    padding-bottom: get_vw(35);
+    margin-bottom: get_vw(181);
+    img {
+      width: get_vw(421);
+      margin: 0 auto;
+      position: relative;
+      top: get_vw(-19);
+      left: get_vw(11);
+    }
+    .text {
+      @include fsvw(26);
+      margin-top: get_vw(32);
+      letter-spacing: -0.088em;
+    }
+  }
+}

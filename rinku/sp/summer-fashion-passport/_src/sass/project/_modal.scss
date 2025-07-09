@@ -1,0 +1,226 @@
+/*---------------------------------------------------------------------------*\
+  Modal Popup
+\*---------------------------------------------------------------------------*/
+.modal {
+  &.is-show {
+    opacity: 1;
+    visibility: visible;
+  }
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+  &-wrap {
+    position: relative;
+  }
+  &-content {
+    width: 972px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #fff;
+    padding: 40px;
+  }
+  &-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+  }
+  &-info {
+    flex: 1;
+    align-self: flex-start;
+  }
+  &-logo {
+    width: 168px;
+    margin: 0 auto;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &-image {
+    width: 400px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &-name {
+    margin-bottom: 30px;
+    span {
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      display: block;
+      font-weight: 700;
+      @include fs(20);
+      line-height: 1.2;
+      letter-spacing: .03em;
+      color: #030101;
+    }
+    .en {
+      font-weight: 500;
+      color: #606060;
+    }
+  }
+  &-description {
+    p {
+      &:not(:first-of-type) {
+        margin-top: 20px;
+      }
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-weight: 500;
+      @include fs(18);
+      letter-spacing: .03em;
+      color: #030101;
+    }
+  }
+  .close-btn {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    top: -50px;
+    right: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      opacity: 0.8;
+    }
+    &::before,
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: calc(100% + 12px);
+      background-color: #fff;
+    }
+    &::before {
+      transform: translateY(-6px) rotate(45deg);
+    }
+    &::after {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+
+  @include pcmiddle() {
+    &-content {
+      width: get_pcvw(972);
+      padding: get_pcvw(40);
+    }
+    &-inner {
+      gap: get_pcvw(30);
+    }
+    &-logo {
+      width: get_pcvw(168);
+    }
+    &-image {
+      width: get_pcvw(400);
+    }
+    &-name {
+      margin-bottom: get_pcvw(30);
+    }
+    &-description {
+      p {
+        &:not(:first-of-type) {
+          margin-top: get_pcvw(20);
+        }
+      }
+    }
+    .close-btn {
+      width: get_pcvw(39);
+      height: get_pcvw(39);
+      top: get_pcvw(-50);
+      &::before,
+      &::after {
+        height: calc(100% + calc(12 / 1440) * 100vw);
+        background-color: #fff;
+      }
+      &::before {
+        transform: translateY(-0.00416666666 * 100vw) rotate(45deg);
+      }
+      &::after {
+        transform: translateY(-0.00416666666 * 100vw) rotate(-45deg);
+      }
+    }
+  }
+
+  @include mobile() {
+    --spacing: calc(40/640 * 100vw);
+    --spacing2: calc(12/640 * 100vw);
+    --spacing3: calc(-6/640 * 100vw);
+
+    &-content {
+      width: calc(100% - var(--spacing));
+      max-height: 85vh;
+      padding: get_vw(20) get_vw(20) get_vw(40) get_vw(20);
+      overflow-y: auto;
+      margin: 0 auto;
+    }
+    &-inner {
+      flex-direction: column;
+      gap: 0;
+    }
+    &-logo {
+      width: get_vw(168);
+    }
+    &-image {
+      width: get_vw(400);
+      margin: 0 auto get_vw(45);
+    }
+    &-name {
+      margin-bottom: get_vw(30);
+      span {
+        @include fsvw(34);
+        &.en {
+          @include fsvw(28);
+        }
+      }
+    }
+    &-description {
+      p {
+        &:not(:first-of-type) {
+          margin-top: get_vw(20);
+        }
+        @include fsvw(28);
+      }
+    }
+    .close-btn {
+      width: get_vw(39);
+      height: get_vw(39);
+      position: absolute;
+      top: get_vw(-50);
+      right: get_vw(20);
+      &::before,
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 1px;
+        height: calc(100% + var(--spacing2));
+        background-color: #fff;
+      }
+      &::before {
+        transform: translateY(var(--spacing3)) rotate(45deg);
+      }
+      &::after {
+        transform: translateY(var(--spacing3)) rotate(-45deg);
+      }
+    }
+  }
+}
