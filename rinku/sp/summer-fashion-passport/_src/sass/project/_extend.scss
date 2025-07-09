@@ -45,6 +45,7 @@
     .contents {
       &.contents--wide {
         background-position: center top 40px;
+        padding-bottom: get_pcvw(120);
       }
     }
   }
@@ -56,6 +57,7 @@
       &.contents--wide {
         background-image: url(../images/mobile/bg_01.png);
         background-position: center top get_vw(85);
+        padding-bottom: get_vw(75);
       }
     }
   }
